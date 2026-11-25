@@ -3,116 +3,21 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Попробуйте AI-администратора OmniLake в онлайн-чате Битрикс24.">
-  <title>OmniLake — демо AI-администратора</title>
+  <title>OmniLake — демо онлайн-чата</title>
   <style>
-    :root { color-scheme: light; --ink: #17143a; --muted: #57556c; --purple: #5232cc; --line: #e7e1f6; --paper: #fcfaff; }
-    * { box-sizing: border-box; }
-    body { margin: 0; background: var(--paper); color: var(--ink); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.5; }
-    a { color: inherit; }
-    a:focus-visible, button:focus-visible { outline: 3px solid #6b4de7; outline-offset: 5px; }
-    .wrap { width: min(1120px, calc(100% - 48px)); margin-inline: auto; }
-    header { border-bottom: 1px solid var(--line); }
-    header .wrap, footer .wrap { min-height: 74px; display: flex; justify-content: space-between; align-items: center; gap: 20px; }
-    .brand { display: inline-flex; align-items: center; gap: 10px; font-size: 1.35rem; font-weight: 750; letter-spacing: -.04em; text-decoration: none; }
-    .mark { display: inline-grid; place-items: center; width: 32px; height: 32px; background: var(--purple); color: white; border-radius: 11px; font-size: 1.2rem; }
-    .site-link { font-size: .95rem; text-underline-offset: 4px; }
-    main { padding-block: clamp(48px, 8vw, 100px) 60px; }
-    .hero { display: grid; grid-template-columns: 1.14fr 1fr; align-items: center; gap: clamp(36px, 7vw, 90px); }
-    .eyebrow { margin: 0 0 14px; color: var(--purple); font-weight: 700; font-size: .92rem; }
-    h1 { font-size: clamp(2.55rem, 5.2vw, 4.7rem); line-height: 1.02; letter-spacing: -.06em; margin: 0 0 22px; }
-    .lede { margin: 0 0 26px; max-width: 490px; color: var(--muted); font-size: clamp(1.05rem, 2vw, 1.22rem); }
-    button { font: inherit; font-weight: 680; border: 0; padding: 14px 24px; border-radius: 13px; color: white; background: var(--purple); cursor: pointer; }
-    button:hover { background: #4124ad; }
-    button[aria-busy="true"] { cursor: progress; }
-    .feedback { margin: 12px 0 0; color: var(--muted); font-size: .95rem; }
-    .feedback:empty { margin: 0; }
-    .example { margin: 0; padding: clamp(18px, 4vw, 38px); border-radius: 30px; background: radial-gradient(ellipse at 85% 0%, #e1d3ff, transparent 67%), #eee8ff; border: 1px solid #e5dafb; }
-    .example-inner { padding: clamp(16px, 3vw, 26px); border-radius: 22px; background: white; box-shadow: 0 16px 45px #45288916; display: grid; gap: 14px; }
-    figcaption { font-size: .9rem; font-weight: 700; color: var(--muted); padding-bottom: 13px; border-bottom: 1px solid var(--line); }
-    .bubble { margin: 0; padding: 11px 14px; border-radius: 15px; max-width: 95%; }
-    .visitor { justify-self: end; background: var(--purple); color: white; border-bottom-right-radius: 4px; }
-    .omni { background: #f2edff; border-bottom-left-radius: 4px; }
-    .try { margin-top: clamp(38px, 7vw, 76px); padding-top: 28px; border-top: 1px solid var(--line); }
-    h2 { margin: 0 0 18px; line-height: 1.15; font-size: clamp(1.6rem, 3vw, 2rem); letter-spacing: -.04em; }
-    ul { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; list-style: none; padding: 0; margin: 0; }
-    li { padding: 16px 18px; border: 1px solid var(--line); background: white; border-radius: 14px; }
-    footer { border-top: 1px solid var(--line); color: var(--muted); font-size: .9rem; padding-bottom: 42px; }
-    @media (max-width: 760px) {
-      .hero, ul { grid-template-columns: 1fr; }
-      .wrap { width: calc(100% - 36px); }
-      footer { padding-bottom: 76px; }
+    html {
+      background:
+        radial-gradient(ellipse at 85% 35%, #e1d3ff, transparent 67%),
+        #fcfaff;
+      min-height: 100%;
+    }
+
+    body {
+      margin: 0;
     }
   </style>
 </head>
 <body>
-  <header>
-    <div class="wrap">
-      <a class="brand" href="https://www.omnilake.ru/" aria-label="OmniLake, официальный сайт"><span class="mark" aria-hidden="true">✦</span>OmniLake</a>
-      <a class="site-link" href="#examples">Что спросить</a>
-    </div>
-  </header>
-  <main class="wrap">
-    <section class="hero" aria-labelledby="hero-title">
-      <div>
-        <p class="eyebrow">Демо OmniLake</p>
-        <h1 id="hero-title">AI-администратор для салонов красоты</h1>
-        <p class="lede">Откройте чат и попробуйте записаться, уточнить стоимость услуги или узнать, как перенести визит.</p>
-        <button type="button" id="open-chat">Открыть онлайн-чат</button>
-        <p class="feedback" id="chat-feedback" role="status"></p>
-      </div>
-      <figure class="example">
-        <div class="example-inner">
-          <figcaption>Пример диалога</figcaption>
-          <p class="bubble visitor">Здравствуйте! Есть свободное время на стрижку после 18:00?</p>
-          <p class="bubble omni">Здравствуйте! На какой день посмотреть свободное время?</p>
-          <p class="bubble visitor">На завтра, пожалуйста.</p>
-        </div>
-      </figure>
-    </section>
-    <section class="try" id="examples" aria-labelledby="examples-title">
-      <h2 id="examples-title">Что спросить в чате</h2>
-      <ul>
-        <li>«Сколько стоит окрашивание в один тон?»</li>
-        <li>«Есть свободные окна на стрижку завтра вечером?»</li>
-        <li>«Как перенести запись на другой день?»</li>
-      </ul>
-    </section>
-  </main>
-  <footer><div class="wrap">OmniLake · Демо онлайн-чата</div></footer>
-  <script>
-    const chatButton = document.getElementById('open-chat');
-    const feedback = document.getElementById('chat-feedback');
-    let chatWidget;
-    let waitTimer;
-
-    function openChat() {
-      if (chatWidget) {
-        chatWidget.open();
-        return;
-      }
-      chatButton.setAttribute('aria-busy', 'true');
-      feedback.textContent = 'Подключаем онлайн-чат…';
-      clearTimeout(waitTimer);
-      waitTimer = setTimeout(() => {
-        waitTimer = undefined;
-        chatButton.removeAttribute('aria-busy');
-        feedback.textContent = 'Чат пока недоступен. Если видите кнопку Битрикс24 в углу страницы, попробуйте открыть чат через неё.';
-      }, 8000);
-    }
-
-    window.addEventListener('onBitrixLiveChat', (event) => {
-      chatWidget = event.detail.widget;
-      feedback.textContent = '';
-      if (waitTimer !== undefined) {
-        clearTimeout(waitTimer);
-        waitTimer = undefined;
-        chatButton.removeAttribute('aria-busy');
-        openChat();
-      }
-    });
-    chatButton.addEventListener('click', openChat);
-  </script>
   <script>
         (function(w,d,u){
                 var s=d.createElement('script');s.async=true;s.src=u+'?'+(Date.now()/60000|0);
